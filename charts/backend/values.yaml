@@ -17,11 +17,10 @@ service:
 
 env:
   port: "5000"
-  name: "taimoor"
 
-# MONGO_URI is no longer set here. The Vault Secrets Operator syncs it from
-# Vault (secret/backend/mongo) into a Secret named "backend-secrets" — see
-# k8s/backend/vault-connection.yaml, vault-auth.yaml, vault-static-secret.yaml.
+# NAME and MONGO_URI are no longer set here. The Vault Secrets Operator syncs
+# them from Vault (secret/backend/mongo) into a Secret named "backend-secrets"
+# — see k8s/backend/vault-connection.yaml, vault-auth.yaml, vault-static-secret.yaml.
 
 resources:
   requests:
