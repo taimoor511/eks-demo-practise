@@ -19,11 +19,9 @@ env:
   port: "5000"
   name: "taimoor"
 
-# In a real environment, don't put this in plaintext values.yaml checked
-# into git. Pass it at install time instead, e.g.:
-#   helm install backend ./charts/backend --set-string mongoUri="$MONGO_URI"
-# or point --values at a file that is gitignored / pulled from a secrets manager.
-mongoUri: "mongodb://taskuser:taskpassword123@mongo-mongodb-0.mongo-mongodb-headless.database.svc.cluster.local:27017/tasksdb?replicaSet=rs0&authSource=admin"
+# MONGO_URI is no longer set here. The Vault Secrets Operator syncs it from
+# Vault (secret/backend/mongo) into a Secret named "backend-secrets" — see
+# k8s/backend/vault-connection.yaml, vault-auth.yaml, vault-static-secret.yaml.
 
 resources:
   requests:
