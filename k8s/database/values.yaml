@@ -2,7 +2,7 @@
 # Produces: StatefulSet + headless Service + per-pod RWO PVC
 
 architecture: replicaset
-replicaCount: 3
+replicaCount: 1
 
 arbiter:
   enabled: false
