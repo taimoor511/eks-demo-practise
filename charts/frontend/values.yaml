@@ -1,0 +1,32 @@
+# Default values for the frontend chart.
+
+namespace: frontend
+
+replicaCount: 1
+
+image:
+  repository: frontend
+  tag: local
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  port: 80
+  targetPort: 80
+  nodePort: 30080
+
+# Where nginx should proxy /api/ requests to. Kept separate from the
+# backend chart's own values so this chart doesn't need to know how the
+# backend chart is configured — only its Service name/namespace/port.
+backend:
+  serviceName: backend
+  namespace: backend
+  port: 5000
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 200m
+    memory: 128Mi

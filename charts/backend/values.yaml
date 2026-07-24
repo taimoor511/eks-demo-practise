@@ -1,0 +1,33 @@
+# Default values for the backend chart.
+# Override per-environment with: helm install ... -f values-prod.yaml
+
+namespace: backend
+
+replicaCount: 1
+
+image:
+  repository: backend
+  tag: local
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 5000
+  targetPort: 5000
+
+env:
+  port: "5000"
+
+# In a real environment, don't put this in plaintext values.yaml checked
+# into git. Pass it at install time instead, e.g.:
+#   helm install backend ./charts/backend --set-string mongoUri="$MONGO_URI"
+# or point --values at a file that is gitignored / pulled from a secrets manager.
+mongoUri: "mongodb://taskuser:taskpassword123@mongo-mongodb-0.mongo-mongodb-headless.database.svc.cluster.local:27017,mongo-mongodb-1.mongo-mongodb-headless.database.svc.cluster.local:27017,mongo-mongodb-2.mongo-mongodb-headless.database.svc.cluster.local:27017/tasksdb?replicaSet=rs0&authSource=admin"
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 250m
+    memory: 256Mi
