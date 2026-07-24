@@ -1,0 +1,46 @@
+# Helm values for hashicorp/vault — standalone mode, file storage.
+# Single pod, no auto-unseal: starts sealed on every restart and needs
+# 3-of-5 unseal keys via `vault operator unseal` before it serves requests.
+
+server:
+  dev:
+    enabled: false
+
+  standalone:
+    enabled: true
+    config: |
+      listener "tcp" {
+        address          = "[::]:8200"
+        cluster_address  = "[::]:8201"
+        tls_disable      = true
+      }
+
+      storage "file" {
+        path = "/vault/data"
+      }
+
+  dataStorage:
+    enabled: true
+    size: 1Gi
+    accessMode: ReadWriteOnce
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 250m
+      memory: 256Mi
+
+  service:
+    enabled: true
+    type: ClusterIP
+
+ui:
+  enabled: true
+  serviceType: ClusterIP
+
+# Auto-injecting secrets into other pods (backend, etc.) is a later step —
+# leave off until Vault itself is initialized/unsealed and verified.
+injector:
+  enabled: false
