@@ -4,6 +4,9 @@
 architecture: replicaset
 replicaCount: 3
 
+arbiter:
+  enabled: false
+
 auth:
   enabled: true
   rootPassword: "rootpassword123"
