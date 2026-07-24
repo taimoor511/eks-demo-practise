@@ -17,6 +17,7 @@ service:
 
 env:
   port: "5000"
+  name: "taimoor"
 
 # In a real environment, don't put this in plaintext values.yaml checked
 # into git. Pass it at install time instead, e.g.:

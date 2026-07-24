@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
-import { getTasks, createTask, updateTask, deleteTask } from './api';
+import { getConfig, getTasks, createTask, updateTask, deleteTask } from './api';
 import './App.css';
 
 export default function App() {
   const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState('');
   const [error, setError] = useState('');
+  const [name, setName] = useState('');
 
   useEffect(() => {
     loadTasks();
+    getConfig().then((config) => setName(config.name)).catch(() => {});
   }, []);
 
   async function loadTasks() {
@@ -45,6 +47,7 @@ export default function App() {
     <div className="container">
       <h1>Task Manager</h1>
       <p className="subtitle">React + Node.js + MongoDB microservice demo</p>
+      {name && <p className="welcome">Welcome {name}</p>}
 
       <form onSubmit={handleAdd} className="task-form">
         <input

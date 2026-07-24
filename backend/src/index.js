@@ -11,6 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
+app.get('/api/config', (req, res) => res.json({ name: process.env.NAME || 'stranger' }));
 app.use('/api/tasks', tasksRouter);
 
 connectDB()

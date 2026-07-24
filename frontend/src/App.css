@@ -12,8 +12,15 @@ h1 {
 .subtitle {
   color: #666;
   margin-top: 0;
-  margin-bottom: 24px;
+  margin-bottom: 8px;
   font-size: 14px;
+}
+
+.welcome {
+  color: #2563eb;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 24px;
 }
 
 .task-form {

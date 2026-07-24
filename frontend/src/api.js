@@ -1,5 +1,11 @@
 const BASE_URL = '/api/tasks';
 
+export async function getConfig() {
+  const res = await fetch('/api/config');
+  if (!res.ok) throw new Error('Failed to fetch config');
+  return res.json();
+}
+
 export async function getTasks() {
   const res = await fetch(BASE_URL);
   if (!res.ok) throw new Error('Failed to fetch tasks');
