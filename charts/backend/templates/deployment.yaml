@@ -30,6 +30,6 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: backend-secrets
-                  key: MONGO_URI
+                  key: mongoUri
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
